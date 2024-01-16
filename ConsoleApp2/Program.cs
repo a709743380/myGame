@@ -1,19 +1,9 @@
-﻿using Autofac.Core;
-using Autofac;
-using ConsoleApp2.Common;
-using ConsoleApp2.enums;
-using ConsoleApp2.Games;
-using ConsoleApp2.GameAttr;
-using ConsoleApp2.IGame;
+﻿using ConsoleApp2.enums;
 using ConsoleApp2.Services;
-using Autofac.Features.Metadata;
-
 namespace ConsoleApp2
 {
     internal class Program
     {
-        delegate void GameMethod();
-
         static void Main(string[] args)
         {
             GameList[] allGame = (GameList[])Enum.GetValues(typeof(GameList));
