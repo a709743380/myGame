@@ -5,5 +5,6 @@ namespace ConsoleApp2.enums
     {
         OneAOneB = 1,
         GuessNumber = 2,
+        MoraGame,
     }
 }

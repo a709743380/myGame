@@ -7,6 +7,15 @@ namespace ConsoleApp2.Extensions
         {
             stringToint = 0;
             bool check = int.TryParse(inputString, out stringToint);
+            if (!check)
+            {
+                Console.WriteLine("請輸入數字:");
+                string temp = Console.ReadLine();
+                check = temp.CheckInt(out stringToint);
+            }
+
+
+
             return check;
         }
 

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kx5w821F8BILL2JUBp7F3u15P+FFrViseiXUotEfVbcAARyKhq0H6kNcZ9KJqdnoSoO2C5YNRNeTv7EvagTkfw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wwwhu\\source\\repos\\ConsoleApp2\\myGame\\ConsoleApp2\\ConsoleApp2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wwwhu\\.nuget\\packages\\autofac\\7.1.0\\autofac.7.1.0.nupkg.sha512",
+    "C:\\Users\\wwwhu\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}

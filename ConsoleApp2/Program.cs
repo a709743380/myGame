@@ -1,4 +1,5 @@
 ﻿using ConsoleApp2.enums;
+using ConsoleApp2.Extensions;
 using ConsoleApp2.Services;
 namespace ConsoleApp2
 {
@@ -13,7 +14,8 @@ namespace ConsoleApp2
             }
 
             Console.WriteLine("請輸入遊戲的編號:");
-            if (int.TryParse(Console.ReadLine(), out int order))
+            string orderstring = Console.ReadLine();
+            if (orderstring.CheckInt(out int order))
             {
                 if (Enum.IsDefined(typeof(GameList), order))
                 {
