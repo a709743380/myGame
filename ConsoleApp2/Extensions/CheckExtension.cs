@@ -13,9 +13,6 @@ namespace ConsoleApp2.Extensions
                 string temp = Console.ReadLine();
                 check = temp.CheckInt(out stringToint);
             }
-
-
-
             return check;
         }
 

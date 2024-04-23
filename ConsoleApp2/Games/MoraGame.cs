@@ -10,13 +10,23 @@ namespace ConsoleApp2.Games
     [GameAttribute(GameList.MoraGame)]
     public class MoraGame : IGameTask
     {
+        //基本參數設定
         private static CommonGear _commonGear = new();
         private int countYouWin = 0;
         private int countCWin = 0;
         private int TotalCount = 1;
         private int totalWin = 0;
+        private const string Rock = "✊";
+        private const string Scissors = "✌️";
+        private const string Paper = "✋";
+        public bool Regame { get; set; } = false;
+
+        /// <summary>
+        /// 取得猜拳內容
+        /// </summary>
         private Array values = Enum.GetValues(typeof(Mora));
-        public void PlayMora()
+        //遊戲開始
+        private void PlayMora()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             bool running = true;
@@ -41,21 +51,27 @@ namespace ConsoleApp2.Games
 
                 if (string.IsNullOrEmpty(myshow) || string.IsNullOrEmpty(cshow))
                     continue;
-                
+
                 Console.WriteLine($"你:{myshow}      VS     {cshow}: 電腦");
                 CheckWin((int)youGuess - (int)cNumber);
                 if (countYouWin == totalWin || countCWin == totalWin)
                 {
-                    init();
                     string winOrlose = countYouWin - countCWin > 0 ? "贏" : "輸";
                     Console.Write($"遊戲結束你{winOrlose}了");
-                    running = _commonGear.DoReSrart();
+                    var result = _commonGear.DoReSrart();
+                    running = result.restart;
+                    Regame = result.regame;
+                    if (running)
+                        init();
+
                 }
 
             } while (running);
 
         }
-
+        /// <summary>
+        /// 初始化
+        /// </summary>
         private void init()
         {
             countYouWin = 0;
@@ -64,7 +80,10 @@ namespace ConsoleApp2.Games
             Console.Write("請輸入贏幾局為勝利：");
             Console.ReadLine().CheckInt(out this.totalWin);
         }
-
+        /// <summary>
+        /// 電腦出拳
+        /// </summary>
+        /// <returns></returns>
         private Mora getCMora()
         {
             Random rnd = new Random();
@@ -72,7 +91,11 @@ namespace ConsoleApp2.Games
             var randomMora = (Mora)values.GetValue(random);
             return randomMora;
         }
-        public void CheckWin(int diff)
+        /// <summary>
+        /// 檢查你和電腦猜拳誰贏了
+        /// </summary>
+        /// <param name="diff"></param>
+        private void CheckWin(int diff)
         {
             if (diff == -2 || diff == -3 || diff == 5)
             {
@@ -91,34 +114,32 @@ namespace ConsoleApp2.Games
 
             TotalCount++;
         }
-        public string GetMoraSymbol(Mora mora)
+        /// <summary>
+        /// 檢查你輸入的是不是 已知方法
+        /// </summary>
+        /// <param name="mora"></param>
+        /// <returns></returns>
+        private string GetMoraSymbol(Mora mora)
         {
             switch (mora)
             {
                 case Mora.Rock:
-                    return MoraSymbol.Rock;
+                    return Rock;
                 case Mora.Scissors:
-                    return MoraSymbol.Scissors;
+                    return Scissors;
                 case Mora.Paper:
-                    return MoraSymbol.Paper;
+                    return Paper;
                 default:
                     Console.WriteLine("請輸入正確的數字！！");
                     return null;
             }
         }
 
-        public enum Mora
+        private enum Mora
         {
             Rock = 0,
             Scissors = 2,
             Paper = 5
-        }
-
-        public class MoraSymbol
-        {
-            public const string Rock = "✊";
-            public const string Scissors = "✌️";
-            public const string Paper = "✋";
         }
         public void Execute()
         {

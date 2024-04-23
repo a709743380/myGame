@@ -3,22 +3,27 @@ namespace ConsoleApp2.Common
 {
     public class CommonGear
     {
-        public bool DoReSrart()
+        public (bool restart, bool regame) DoReSrart()
         {
-            Console.WriteLine("是否重新開始（Y/N）");
+            Console.Write("是否重新開始（Y/N）");
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.KeyChar == 'Y' || key.KeyChar == 'y')
             {
                 Console.WriteLine();
-                return true;
+                return (true, false);
             }
-
-            return false;
-        }
-        public string[] InitGame()
-        {
-            var games = new[] { "1A1B", "猜數字" };
-            return games;
+            else
+            {
+                Console.WriteLine();
+                Console.Write("是否重新切換遊戲？（Y/N）");
+                key = Console.ReadKey();
+                if (key.KeyChar == 'Y' || key.KeyChar == 'y')
+                {
+                    Console.WriteLine();
+                    return (false, true);
+                }
+            }
+            return (false, false);
         }
     }
 }

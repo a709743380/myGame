@@ -9,16 +9,19 @@ namespace ConsoleApp2.Games
     public class GuessNumberGame : IGameTask
     {
         private CommonGear _commonGear = new();
+
+        public bool Regame { get; set; } = false;
+
         private (int ansNumber, int num_start, int num_end) InitNumber()
         {
-            Random rad = new Random();
+            Random rad = new();
             int ansNumber = rad.Next(0, 101);
             int numStart = 0;
             int numEnd = 100;
             return (ansNumber, numStart, numEnd);
         }
 
-        public void GuessNumber()
+        private void GuessNumber()
         {
             Console.WriteLine("0~100猜數字");
             (int ansNumber, int numStart, int numEnd) = InitNumber();
@@ -45,7 +48,8 @@ namespace ConsoleApp2.Games
                         case 0:
                             Console.WriteLine($"猜中了答案是{guessNumber}");
 
-                            if (_commonGear.DoReSrart())
+                            var result = _commonGear.DoReSrart();
+                            if (result.restart)
                             {
                                 (ansNumber, numStart, numEnd) = InitNumber();
 
@@ -54,6 +58,7 @@ namespace ConsoleApp2.Games
                             else
                             {
                                 running = false;
+                                Regame = result.regame;
                             }
                             break;
                         case 1:
@@ -70,7 +75,7 @@ namespace ConsoleApp2.Games
 
         }
 
-        public void  Execute()
+        public void Execute()
         {
             GuessNumber();
         }

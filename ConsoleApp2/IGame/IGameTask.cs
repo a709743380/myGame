@@ -10,5 +10,6 @@ namespace ConsoleApp2.IGame
     {
         //執行游戲
         void Execute();
+        bool Regame { get; set; }
     }
 }
