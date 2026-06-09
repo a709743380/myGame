@@ -12,7 +12,10 @@ namespace ConsoleApp2
             GameAutoFac.Register();
         }
 
-
+        /// <summary>
+        /// test2修改
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             GameList[] allGame = (GameList[])Enum.GetValues(typeof(GameList));
