@@ -69,6 +69,7 @@ namespace ConsoleApp2.Games
             } while (running);
 
         }
+
         /// <summary>
         /// 初始化
         /// </summary>
