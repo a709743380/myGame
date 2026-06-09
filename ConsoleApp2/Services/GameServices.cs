@@ -13,6 +13,7 @@ namespace ConsoleApp2.Services
         private static  IContainer? _container;
 
         // 在建構子中建立容器並註冊服務
+        //test1 修改
         public static void Register()
         {
             // 1. 建立容器建構器
