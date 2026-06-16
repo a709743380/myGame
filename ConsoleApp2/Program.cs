@@ -13,7 +13,7 @@ namespace ConsoleApp2
         }
 
         /// <summary>
-        /// test2修改
+        /// test1修改
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
