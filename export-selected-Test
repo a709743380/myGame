@@ -1,0 +1,34 @@
+export-selected.ps1 
+
+
+powershell.exe
+-ExecutionPolicy Bypass -File "D:\export-selected.ps1" "$REPO"
+
+
+
+param( [string]$repo )
+$dest = "D:\export"
+Set-Location $repo
+🔥 取得所有 staged 檔案
+$files = git diff --cached --name-only
+if (-not $files) { Write-Host "沒有 staged 檔案" exit }
+foreach ($file in $files) {
+$file = $file.Trim() -replace '/', '\'
+
+$sourcePath = Join-Path $repo $file
+$targetPath = Join-Path $dest $file
+
+if (-not (Test-Path $sourcePath)) {
+    Write-Host "SKIP (not found): $file"
+    continue
+}
+
+# 建資料夾
+New-Item -ItemType Directory -Force -Path (Split-Path $targetPath) | Out-Null
+
+# 複製檔案
+Copy-Item $sourcePath $targetPath -Force
+
+Write-Host "EXPORTED: $file"
+}
+Write-Host "完成 staged 檔案輸出"
